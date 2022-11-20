@@ -1,16 +1,39 @@
-# This is a sample Python script.
+import threading
+import time
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+#place ur desired ranges in the rangess variable
+rangess = [
+    [10, 20],
+    [1, 5],
+    [70, 80],
+    [27, 92],
+    [0, 16]
+]
+def range_calc(start, end):
+    results.append(sum(range(start, end+1)))
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+THREAD_COUNT = len(rangess)
+threads = []
+results = []
+for i in range(THREAD_COUNT):
+
+
+
+
+    t = threading.Thread(target=range_calc, args=(rangess[i][0], rangess[i][1]))
+    t.start()
+
+# Join all the threads back up to this, the main thread. The main thread
+# will block on the join() call until the thread is complete. If the
+# thread is already complete, the join() returns immediately.
+
+for t in threads:
+    t.join()
+
+print(results)
+print(sum(results))
+
